@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: varkiel
+Version: 1.0.0
+Summary: Advanced AI Constraint System
+Author-email: Lexsight LLC <contact@lexsight.ai>
+License: AGPL-3.0-only OR Commercial
+Requires-Python: >=3.9
+License-File: LICENSE
+Requires-Dist: numpy>=1.21.0
+Requires-Dist: scipy>=1.7.0
+Requires-Dist: requests>=2.26.0
+Requires-Dist: tenacity>=8.0.0
+Requires-Dist: pydantic>=1.9.0
+Requires-Dist: sentence-transformers>=2.2.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: flake8>=4.0.0; extra == "dev"
+Requires-Dist: mypy>=0.910; extra == "dev"
+Requires-Dist: pytest-cov>=3.0.0; extra == "dev"
+Dynamic: license-file
