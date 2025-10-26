@@ -14,16 +14,21 @@ and execution analysis. All unsafe patterns are intentionally exposed for resear
 import hashlib
 import json
 import logging
+import os
 from datetime import datetime
+from pathlib import Path
+from typing import Any, Dict, List
+
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives.serialization import load_pem_private_key
-from typing import Dict, Any
 
 class AuditLogger:
     def __init__(self, config: Dict[str, Any]):
+        default_key = Path(__file__).resolve().parents[2] / "infra" / "certs" / "private_key.pem"
+        configured_key = config.get('private_key_path') or os.getenv('VARKIEL_PRIVATE_KEY_PATH')
         self.log_file = config.get('log_file', 'audit.log')
-        self.private_key_path = config.get('private_key_path', 'private_key.pem')
+        self.private_key_path = Path(configured_key) if configured_key else default_key
         self.log_format = config.get('log_format', '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         
         # Initialize logger
@@ -33,13 +38,14 @@ class AuditLogger:
         # Create file handler
         file_handler = logging.FileHandler(self.log_file)
         file_handler.setLevel(logging.INFO)
-        
+
         # Create formatter
         formatter = logging.Formatter(self.log_format)
         file_handler.setFormatter(formatter)
-        
+
         # Add handler to logger
         self.logger.addHandler(file_handler)
+        self.log: List[Dict[str, Any]] = []
 
     def log_decision(self, prompt: str, response: str, context: dict) -> str:
         entry = {

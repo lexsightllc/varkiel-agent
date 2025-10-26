@@ -19,10 +19,18 @@ setup(
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     install_requires=[
-        "numpy",
-        "scipy",
-        "scikit-learn",
-        "flask",
-        "torch"
+        "numpy>=1.21.0",
+        "scipy>=1.7.0",
+        "requests>=2.26.0",
+        "tenacity>=8.0.0",
+        "pydantic>=1.9.0",
+        "sentence-transformers>=2.2.0",
+        "flask>=2.3.0",
+        "flask-login>=0.6.0",
+        "prometheus-client>=0.20.0",
+        "scikit-learn>=1.3.0",
+        "matplotlib>=3.8.0",
+        "torch>=2.1.0",
+        "gunicorn>=21.2.0",
     ],
 )

@@ -11,10 +11,10 @@ This code is provided AS-IS for research into AI safety, adversarial prompt cont
 and execution analysis. All unsafe patterns are intentionally exposed for research purposes.
 """
 
-from central_controller import CentralController
-from structural_constraint_engine import StructuralConstraintEngine
-from constraint_lattice_adapter import ConstraintLatticeAdapter
-from semantic_resonance import FormStateVector
+from .central_controller import CentralController
+from .constraint_lattice_adapter import ConstraintLatticeAdapter
+from .semantic_resonance import FormStateVector
+from .structural_constraint_engine import StructuralConstraintEngine
 
 if __name__ == "__main__":
     # Initialize components

@@ -1,0 +1,6 @@
+# Require review from the core maintainers for all changes
+* @Lexsight
+
+# Critical safety modules require explicit review
+src/varkiel/central_controller.py @Lexsight @LexsightSecurity
+src/varkiel/structural_constraint_engine.py @Lexsight @LexsightResearch

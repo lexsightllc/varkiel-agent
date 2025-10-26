@@ -16,7 +16,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 import numpy as np
 import os
 import sqlite3
-from central_controller import CentralController
+from .central_controller import CentralController
 from prometheus_client import start_http_server, Summary, Gauge
 
 app = Flask(__name__)

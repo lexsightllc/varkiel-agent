@@ -17,13 +17,16 @@ Copyright (C) 2025 Lexsight LLC
 SPDX-License-Identifier: AGPL-3.0-only OR Commercial
 """
 
-import numpy as np
 import json
 import os
+from pathlib import Path
+
+import numpy as np
 
 class StateManager:
-    def __init__(self, storage_path='state.json'):
-        self.storage_path = storage_path
+    def __init__(self, storage_path: str | os.PathLike[str] | None = None):
+        default_path = Path(__file__).resolve().parents[2] / "data" / "state.json"
+        self.storage_path = Path(storage_path) if storage_path else default_path
         self.episodic_memory = []
         self.load_state()
         
@@ -36,10 +39,11 @@ class StateManager:
         self.save_state()
         
     def save_state(self):
-        with open(self.storage_path, 'w') as f:
+        self.storage_path.parent.mkdir(parents=True, exist_ok=True)
+        with self.storage_path.open('w', encoding='utf-8') as f:
             json.dump(self.episodic_memory, f)
-            
+
     def load_state(self):
-        if os.path.exists(self.storage_path):
-            with open(self.storage_path, 'r') as f:
+        if self.storage_path.exists():
+            with self.storage_path.open('r', encoding='utf-8') as f:
                 self.episodic_memory = json.load(f)

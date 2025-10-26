@@ -18,17 +18,19 @@ SPDX-License-Identifier: AGPL-3.0-only OR Commercial
 
 Comprehensive performance benchmark for Varkiel Agent with paradox probes
 """
-import time
-import numpy as np
-import matplotlib.pyplot as plt
-from central_controller import CentralController
-from godel_metric import GodelAwarenessMetric
-from structural_constraint_engine import ConstraintLatticeWrapper, StructuralConstraintEngine
-from symbolic_coherence_engine import SymbolicCoherenceEngine
-from phenomenological_tracker import PhenomenologicalTracker
-from coherence_monitor import RecursiveInvarianceMonitor
-from state_vector import StateVector  # Import StateVector class
 import logging  # Import logging module
+import time
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+from .central_controller import CentralController
+from .coherence_monitor import RecursiveInvarianceMonitor
+from .godel_metric import GodelAwarenessMetric
+from .phenomenological_tracker import PhenomenologicalTracker
+from .state_vector import StateVector  # Import StateVector class
+from .structural_constraint_engine import ConstraintLatticeWrapper, StructuralConstraintEngine
+from .symbolic_coherence_engine import SymbolicCoherenceEngine
 
 # Initialize logger
 logger = logging.getLogger(__name__)
