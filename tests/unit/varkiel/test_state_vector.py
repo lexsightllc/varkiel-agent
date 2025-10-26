@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MPL-2.0
 """Unit tests for the `StateVector` data structure."""
 
 from __future__ import annotations

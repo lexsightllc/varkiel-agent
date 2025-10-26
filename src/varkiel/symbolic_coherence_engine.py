@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MPL-2.0
 """
 ⚠️ OPERATIONAL RISK WARNING ⚠️
 
@@ -14,7 +15,6 @@ and execution analysis. All unsafe patterns are intentionally exposed for resear
 """
 Varkiel Agent - Advanced AI Constraint System
 Copyright (C) 2025 Lexsight LLC
-SPDX-License-Identifier: AGPL-3.0-only OR Commercial
 
 Symbolic Coherence Engine - Metaphor & echo resolution
 

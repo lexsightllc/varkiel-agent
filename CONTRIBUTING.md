@@ -17,3 +17,7 @@ We welcome contributions! Here are some good first tasks:
 4. Push to the branch (`git push origin feature/your-feature`)
 5. Run `make check` to ensure linting, typing, tests, coverage, and security scans pass locally
 6. Open a pull request using the Conventional Commits format (`type(scope): summary`)
+
+## Licensing of Contributions
+
+By participating in this project you agree that all inbound contributions are provided under the terms of the Mozilla Public License 2.0 (MPL-2.0). This repository follows an inbound=outbound policy: the same license applies to the codebase and all accepted contributions. Please include the `SPDX-License-Identifier: MPL-2.0` header in any new source files so automated tooling can verify compliance.

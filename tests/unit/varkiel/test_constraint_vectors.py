@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MPL-2.0
 """Unit tests for constraint lattice adapter vector operations."""
 
 from __future__ import annotations

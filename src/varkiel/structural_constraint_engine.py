@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MPL-2.0
 """
 ⚠️ OPERATIONAL RISK WARNING ⚠️
 
@@ -270,7 +271,6 @@ class RecursiveConstraintEngine:
 
 """
 Varkiel Agent - Advanced AI Constraint System
-SPDX-License-Identifier: AGPL-3.0-only OR Commercial
 
 Structural Constraint Engine - Complete Implementation
 """

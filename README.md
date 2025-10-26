@@ -1,11 +1,11 @@
-# Varkiel Agent Architecture  
-[![License](https://img.shields.io/badge/License-Lexsight%20Proprietary-red)](LICENSE.txt)
+# Varkiel Agent Architecture
+[![License](https://img.shields.io/badge/License-MPL--2.0-brightgreen)](LICENSE)
 [![Coverage](https://img.shields.io/badge/Coverage-97%25-brightgreen)](./coverage)
 [![CI Status](https://github.com/ochoaughini/VarkielAgent/actions/workflows/ci.yml/badge.svg)](https://github.com/ochoaughini/VarkielAgent/actions)
 [![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/ochoaughini/.../coverage.json)](https://github.com/ochoaughini/VarkielAgent)
 
-> **Lexsight LLC Proprietary Software** – 2025 Lexsight LLC.  
-> Redistribution or derivative use outside the scope of the Lexsight LLC Proprietary Software License Agreement is strictly prohibited.
+> **Open Source Notice** – 2025 Augusto “Guto” Ochoa Ughini.
+> This project is licensed under the Mozilla Public License 2.0. See [LICENSE](./LICENSE) and [NOTICE](./NOTICE) for details.
 
 ---
 
@@ -108,18 +108,14 @@ Key Features
 
 ## Licensing
 
-Varkiel Agent is available under dual licensing:
+Varkiel Agent is released under the [Mozilla Public License 2.0](./LICENSE).
 
-- **AGPLv3**: For open-source use and community contributions
-- **Commercial License**: For proprietary integrations and enterprise use
+- You may use, modify, and distribute the project in accordance with the MPL-2.0 terms.
+- If you modify MPL-covered files, you must make those modifications available under MPL-2.0 when you distribute them.
+- Larger works that simply include MPL-covered files may remain under their own licenses, provided the MPL-covered portions and modifications stay under MPL-2.0.
+- Review the [NOTICE](./NOTICE) file for copyright and third-party acknowledgments.
 
-## License Interaction
-
-Varkiel Agent is proprietary software, while the Constraint Lattice component is MIT licensed. This means:
-
-- You may use and modify the Constraint Lattice independently under MIT terms
-- Combining Constraint Lattice with Varkiel Agent requires a commercial license
-- Any derivative work of Varkiel Agent must adhere to the Lexsight LLC Proprietary Software License
+For organizations that require different licensing terms, please contact the maintainer to discuss commercial arrangements.
 
 ⸻
 
@@ -218,10 +214,10 @@ Contributing
 
 Pull requests are welcome. Please:
 	•	Follow test-suite patterns and extend coverage ≥ 97 %.
-	•	Preserve SPDX licence header (# SPDX-License-Identifier: Lexsight-LLC-Proprietary) in every new source file.
+	•	Preserve SPDX licence header (# SPDX-License-Identifier: MPL-2.0) in every new source file.
 	•	Document architectural decisions via ADRs before large changes.
 	•	Open an issue for major feature proposals to discuss design implications.
 
 ⸻
 
- 2025 Lexsight LLC – All rights reserved. Use of this repository is governed by the Lexsight LLC Proprietary Software License Agreement. See LICENSE.txt for details.
+2025 Augusto “Guto” Ochoa Ughini. This repository is provided under the Mozilla Public License 2.0. See [LICENSE](./LICENSE) and [NOTICE](./NOTICE) for obligations and attribution guidance.
