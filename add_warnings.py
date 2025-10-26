@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MPL-2.0
 #!/usr/bin/env python3
 """
 Script to add operational risk warnings to Python files in the Varkiel Agent project.

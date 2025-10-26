@@ -1,4 +1,5 @@
 #!/usr/bin/env pwsh
+# SPDX-License-Identifier: MPL-2.0
 param(
     [Parameter(ValueFromRemainingArguments = $true)]
     [string[]]$Args

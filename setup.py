@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MPL-2.0
 """
 ⚠️ OPERATIONAL RISK WARNING ⚠️
 
@@ -18,6 +19,7 @@ setup(
     version="0.1.0",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
+    license="MPL-2.0",
     install_requires=[
         "numpy>=1.21.0",
         "scipy>=1.7.0",

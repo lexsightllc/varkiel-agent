@@ -1,0 +1,15 @@
+ProjectName © 2025 Augusto 'Guto' Ochoa Ughini
+
+This project is distributed under the Mozilla Public License 2.0. See LICENSE for the full text.
+
+Third-party components included via source or build-time dependencies remain under their respective licenses. Key attributions:
+
+- NumPy — Copyright (c) 2005-2024 NumPy Developers. Licensed under the BSD 3-Clause License.
+- SciPy — Copyright (c) 2001-2024 SciPy developers. Licensed under the BSD 3-Clause License.
+- Requests — Copyright (c) 2013-present Kenneth Reitz. Licensed under the Apache License 2.0.
+- Pydantic — Copyright (c) 2017-present Samuel Colvin and contributors. Licensed under the MIT License.
+- Sentence Transformers — Copyright (c) 2019-2024 UKPLab. Licensed under the Apache License 2.0.
+- Flask — Copyright (c) 2010-2024 Pallets. Licensed under the BSD 3-Clause License.
+- Torch — Copyright (c) 2016-2024 The PyTorch contributors. Licensed under the BSD 3-Clause License.
+
+Additional dependencies are detailed in THIRD_PARTY_NOTICES. Distribution packages must include this NOTICE file.

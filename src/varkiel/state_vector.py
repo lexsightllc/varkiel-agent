@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MPL-2.0
 """Unified state vector representation used across the Varkiel system."""
 
 from __future__ import annotations

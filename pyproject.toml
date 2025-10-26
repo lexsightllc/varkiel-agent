@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MPL-2.0
 [project]
 name = "varkiel"
 version = "1.0.0"
@@ -5,7 +6,10 @@ description = "Advanced AI Constraint System"
 authors = [
     {name = "Lexsight LLC", email = "contact@lexsight.ai"}
 ]
-license = {text = "AGPL-3.0-only OR Commercial"}
+license = {text = "MPL-2.0"}
+classifiers = [
+    "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+]
 requires-python = ">=3.10"
 dependencies = [
     "numpy>=1.21.0",

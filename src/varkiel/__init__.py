@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MPL-2.0
 """Varkiel package initialization."""
 
 from .central_controller import CentralController

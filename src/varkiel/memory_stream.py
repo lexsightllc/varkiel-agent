@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MPL-2.0
 """
 ⚠️ OPERATIONAL RISK WARNING ⚠️
 

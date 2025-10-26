@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MPL-2.0
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.4.8
@@ -20,3 +21,11 @@ repos:
         additional_dependencies:
           - types-requests
           - types-urllib3
+  - repo: local
+    hooks:
+      - id: add-spdx-header
+        name: Add SPDX header
+        entry: scripts/add_spdx_header.py
+        language: python
+        files: '\.(py|sh|bash|ps1|psm1|ya?ml|toml)$'
+        stages: [commit]
