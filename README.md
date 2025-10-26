@@ -140,16 +140,40 @@ Installation
 git clone https://github.com/yourusername/varkiel-agent.git
 cd varkiel-agent
 
-# Create virtual environment
-python3 -m venv varkiel-env
-source varkiel-env/bin/activate
+# Bootstrap toolchain, virtual environment, and git hooks
+make bootstrap
 
-# Install dependencies
-pip install -r requirements.txt
+# Run the default quality gate locally
+make check
 ```
 
+### Developer Tasks
+
+The repository exposes a consistent developer toolbelt in the `scripts/` directory. The most common actions are also mapped to `make` targets.
+
+| Task | Script | Description |
+| --- | --- | --- |
+| Bootstrap | `scripts/bootstrap` | Create or update the local virtual environment, install dependencies, and configure pre-commit hooks. |
+| Developer server | `scripts/dev` | Launch the Flask development server with hot reload enabled (port 8000 by default). |
+| Lint | `scripts/lint [--fix]` | Run Ruff static analysis across `src/` and `tests/`; pass `--fix` to auto-correct supported rules. |
+| Format | `scripts/fmt` | Apply Ruff format, Black, and isort for consistent Python formatting. |
+| Type-check | `scripts/typecheck` | Execute MyPy in strict mode across the application and tests. |
+| Unit tests | `scripts/test` | Run the unit test suite with pytest. |
+| End-to-end tests | `scripts/e2e` | Execute the e2e test suite when scenarios are available. |
+| Coverage | `scripts/coverage` | Run pytest with coverage reporting (terminal and XML output). |
+| Build | `scripts/build` | Produce source and wheel distributions using `python -m build`. |
+| Package | `scripts/package` | Build wheel-only artifacts suitable for publishing. |
+| Release | `scripts/release` | Run `semantic-release publish` to cut a tagged release. |
+| Update dependencies | `scripts/update-deps` | Regenerate `requirements.txt` and `requirements.lock` via `pip-compile`. |
+| Security scan | `scripts/security-scan` | Perform dependency and static application security checks (pip-audit, bandit). |
+| SBOM | `scripts/sbom` | Emit a CycloneDX SBOM under `sbom/sbom.json`. |
+| Documentation | `scripts/gen-docs` | Build the developer documentation site with MkDocs. |
+| Migrations | `scripts/migrate` | Apply database migrations when `alembic.ini` is present; otherwise reports no-op. |
+| Clean | `scripts/clean` | Remove cached artifacts, build outputs, and compiled bytecode. |
+| Quality gate | `scripts/check` | Run lint, type-check, tests, coverage, and security scans sequentially. |
+
 ### Configuration
-Create `config.json` with parameters:
+Create `configs/config.json` with parameters:
 ```json
 {
   "structural": {"max_depth": 128, "invariant_rules": ["fold_axiom1", "fold_axiom2"]},
@@ -158,16 +182,18 @@ Create `config.json` with parameters:
 }
 ```
 
+Set environment variables in `.env` based on `.env.example`. Private signing keys must be provided via `VARKIEL_PRIVATE_KEY_PATH` and are no longer stored in the repository.
+
 ## Usage
 
 ### Command-line Demo
 ```bash
-python demo.py --config config.json --verbose
+python demo.py --config configs/config.json --verbose
 ```
 
 ### Web Interface
 ```bash
-python app.py
+make dev
 ```
 Access at http://localhost:5000
 

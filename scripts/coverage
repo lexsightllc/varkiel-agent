@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+source "$SCRIPT_DIR/common.sh"
+ensure_venv
+
+run pytest --cov="$REPO_ROOT/src" --cov-report=term-missing --cov-report=xml "$REPO_ROOT/tests"

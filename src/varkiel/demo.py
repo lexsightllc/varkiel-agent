@@ -19,11 +19,14 @@ Demonstration script - Complete Implementation
 """
 
 import json
+from pathlib import Path
+
 from varkiel.central_controller import CentralController
 
 def run_demo():
     # Load configuration
-    with open('config.json') as f:
+    config_path = Path(__file__).resolve().parents[2] / "configs" / "config.json"
+    with config_path.open() as f:
         config = json.load(f)
     
     # Initialize controller

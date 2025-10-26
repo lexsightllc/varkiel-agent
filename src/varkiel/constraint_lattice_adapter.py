@@ -17,16 +17,18 @@ Copyright (C) 2025 Lexsight LLC
 SPDX-License-Identifier: AGPL-3.0-only OR Commercial
 """
 
-import numpy as np
 import collections  # Added for BFS implementation
-from typing import Optional, Tuple, Dict, List, Any
-from enum import Enum
-from structural_constraint_engine import ConstraintType  # Import constraint types
-from varkiel.state_vector import StateVector  # Import StateVector
-import requests
 import time
+from enum import Enum
+from typing import Any, Dict, List, Optional, Tuple
+
+import numpy as np
+import requests
 from tenacity import retry, stop_after_attempt, wait_exponential
+
 from .exceptions import GovernanceError
+from .state_vector import StateVector
+from .structural_constraint_engine import ConstraintType
 
 # Mock classes for testing
 class Node:
@@ -160,7 +162,7 @@ class CSPStateMachine:
 class ConstraintLatticeAdapter:
     def __init__(self, symbolic_topology: Optional[Dict[str, Tuple[np.ndarray, float]]] = None):
         self.symbolic_topology = symbolic_topology or {}
-        self.constraints = []  # Added to store constraints
+        self.constraints: List[Constraint] = []
         
     def add_constraint(self, constraint):
         """Add a new constraint to the lattice"""
@@ -171,37 +173,43 @@ class ConstraintLatticeAdapter:
             return self.apply_constraint_vector(state, constraint_type)
         if len(self.constraints) == 0:
             coherence = self.calculate_global_coherence(state)
-            return StateVector(state, coherence)
-        else:
-            # Apply all constraints sequentially
-            constrained_state = state.copy()
-            for constraint in self.constraints:
-                constrained_state = constraint.apply(constrained_state)
-            coherence = self.calculate_global_coherence(constrained_state)
-            return StateVector(constrained_state, coherence)
+            return StateVector(state=np.asarray(state, dtype=float), coherence_level=coherence)
+
+        # Apply all constraints sequentially
+        constrained_state = np.asarray(state, dtype=float)
+        for constraint in self.constraints:
+            constrained_state = constraint.apply(constrained_state)
+        coherence = self.calculate_global_coherence(constrained_state)
+        return StateVector(state=constrained_state, coherence_level=coherence)
     
     def apply_constraint_vector(self, state: np.ndarray, constraint_type: ConstraintType) -> StateVector:
         if constraint_type == ConstraintType.SUSPENSION:
             return self._apply_suspension(state)
-        elif constraint_type == ConstraintType.OVERALIGNMENT:
+        if constraint_type == ConstraintType.OVERALIGNMENT:
             return self._apply_overalignment(state)
-        elif constraint_type == ConstraintType.CAUSAL_ERASURE:
+        if constraint_type == ConstraintType.CAUSAL_ERASURE:
             return self._apply_causal_erasure(state)
-        else:
-            return StateVector(state, self.calculate_global_coherence(state))
+        coherence = self.calculate_global_coherence(state)
+        vector = StateVector(state=np.asarray(state, dtype=float), coherence_level=coherence)
+        vector.metrics["coherence_score"] = coherence
+        return vector
     
     def _apply_suspension(self, state: np.ndarray) -> StateVector:
         if self._is_high_stakes_paradox(state):
-            return StateVector(np.zeros_like(state), 0.0)
-        return StateVector(state, self.calculate_global_coherence(state))
+            return StateVector(state=np.zeros_like(state), coherence_level=0.0)
+        coherence = self.calculate_global_coherence(state)
+        return StateVector(state=np.asarray(state, dtype=float), coherence_level=coherence)
     
     def _apply_overalignment(self, state: np.ndarray) -> StateVector:
-        security_consensus_factor = 0.85
-        return StateVector(state * security_consensus_factor, self.calculate_global_coherence(state))
+        security_consensus_factor = getattr(self, "security_consensus_factor", 0.85)
+        scaled_state = np.asarray(state, dtype=float) * security_consensus_factor
+        coherence = self.calculate_global_coherence(scaled_state)
+        return StateVector(state=scaled_state, coherence_level=coherence)
     
     def _apply_causal_erasure(self, state: np.ndarray) -> StateVector:
         generalized_state = self._generalize_state(state)
-        return StateVector(generalized_state, self.calculate_global_coherence(generalized_state))
+        coherence = self.calculate_global_coherence(generalized_state)
+        return StateVector(state=generalized_state, coherence_level=coherence)
     
     def update_symbolic_topology(self, concept: str, state_vector: np.ndarray, coherence: float):
         self.symbolic_topology[concept] = (state_vector, coherence)

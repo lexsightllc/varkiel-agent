@@ -1,0 +1,2 @@
+# Generated via scripts/update-deps
+# Run `make update-deps` to refresh locked dependencies.

@@ -11,9 +11,11 @@ This code is provided AS-IS for research into AI safety, adversarial prompt cont
 and execution analysis. All unsafe patterns are intentionally exposed for research purposes.
 """
 
-from state_vector import StateVector
 from typing import Callable, List
+
 import numpy as np
+
+from .state_vector import StateVector
 
 class EthicalSpecification:
     def __init__(self, constraints: List[Callable[[StateVector], bool]]):

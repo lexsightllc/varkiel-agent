@@ -1,8 +1,10 @@
-FROM python:3.9-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 COPY . .
 
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip \
+    && pip install .
 
-CMD ["python", "main.py"]
+ENV PORT=8000
+CMD ["gunicorn", "varkiel.app:app", "--bind", "0.0.0.0:${PORT}"]

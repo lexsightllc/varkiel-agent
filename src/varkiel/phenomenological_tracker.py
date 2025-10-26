@@ -32,7 +32,7 @@ from sklearn.decomposition import IncrementalPCA
 import uuid
 import logging
 from typing import Optional
-from state_vector import StateVector  # Ensure this import exists
+from .state_vector import StateVector  # Ensure this import exists
 from collections import deque
 
 class PatternResonanceVectors:

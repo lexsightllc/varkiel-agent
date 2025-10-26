@@ -11,13 +11,14 @@ This code is provided AS-IS for research into AI safety, adversarial prompt cont
 and execution analysis. All unsafe patterns are intentionally exposed for research purposes.
 """
 
-from central_controller import CentralController
-from constraint_lattice_adapter import ConstraintLatticeAdapter
-from semantic_resonance import ResonanceFilter as SemanticResonanceEngine
-from structural_constraint_engine import StructuralConstraintEngine
-from risk_balancer import RiskBalancer
-from state_vector import StateVector
 import numpy as np
+
+from .central_controller import CentralController
+from .constraint_lattice_adapter import ConstraintLatticeAdapter
+from .risk_balancer import RiskBalancer
+from .semantic_resonance import ResonanceFilter as SemanticResonanceEngine
+from .state_vector import StateVector
+from .structural_constraint_engine import StructuralConstraintEngine
 
 # Mock classes for missing components
 class MockPhenomenologicalTracker:
@@ -36,7 +37,7 @@ class MinimalLattice(ConstraintLatticeAdapter):
     def apply(self, state: np.ndarray) -> StateVector:
         # Simple constraint: normalize the state
         state = state / np.linalg.norm(state)
-        return StateVector(state, coherence=0.8)
+        return StateVector(state=state, coherence_level=0.8)
 
 # Create minimal structural engine
 class MinimalStructuralEngine(StructuralConstraintEngine):

@@ -1,4 +1,46 @@
-.env
-*.log
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*.so
+*.dylib
+
+# Environments
+.env
+.env.local
+.venv/
+.venv*/
+
+# Tooling caches
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.hypothesis/
+.coverage
+coverage.xml
+htmlcov/
+pytest.ini
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# IDEs and editors
+.vscode/
+.idea/
+
+# Data & logs
+logs/
+*.log
+sbom/
+artifacts/
+
+# Node (for docs or frontend experiments)
+node_modules/
+
+# macOS
+.DS_Store
+
+# Docker
+*.pid

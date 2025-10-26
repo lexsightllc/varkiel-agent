@@ -1,0 +1,23 @@
+site_name: Varkiel Agent Docs
+site_description: Developer documentation for the Varkiel safety research agent.
+site_url: https://example.com/varkiel
+repo_url: https://github.com/yourusername/varkiel-agent
+
+nav:
+  - Home: index.md
+  - Architecture: architecture.md
+  - Contributing: contributing.md
+  - Roadmap: roadmap.md
+  - Style Guide: style_guide.md
+  - ADRs:
+      - docs/adr/README.md
+
+docs_dir: docs
+site_dir: site
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - pymdownx.highlight
+  - pymdownx.superfences

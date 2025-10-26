@@ -22,8 +22,8 @@ import logging
 import traceback
 from typing import Dict, Any, List, Optional
 from dataclasses import dataclass
-from varkiel.state_vector import StateVector
 from varkiel.exceptions import GovernanceError, SafetyViolationError
+from varkiel.state_vector import StateVector
 
 @dataclass
 class ProcessingResult:
@@ -34,10 +34,44 @@ class ProcessingResult:
     processing_time: float
 
 class CentralController:
-    def __init__(self, config: Dict[str, Any]):
-        self.config = config
+    def __init__(
+        self,
+        config: Optional[Dict[str, Any]] = None,
+        *,
+        structural_engine=None,
+        coherence_engine=None,
+        phenomenological_tracker=None,
+        recursive_invariance_monitor=None,
+        risk_balancer=None,
+        audit_logger=None,
+    ):
+        self.config = config or {}
         self.logger = logging.getLogger(__name__)
-        self._init_components()
+
+        if structural_engine and coherence_engine and phenomenological_tracker:
+            from varkiel.audit_logger import AuditLogger
+            from varkiel.risk_balancer import RiskBalancer
+
+            self.components = {
+                'structural': structural_engine,
+                'symbolic': coherence_engine,
+                'phenomenological': phenomenological_tracker,
+                'risk': risk_balancer or RiskBalancer(self.config.get('risk', {})),
+                'audit': audit_logger or AuditLogger(self.config.get('audit', {})),
+            }
+
+            if recursive_invariance_monitor:
+                self.components['monitor'] = recursive_invariance_monitor
+
+            if self.config.get('use_lattice', False):
+                from varkiel.constraint_lattice_adapter import ConstraintLatticeAdapter
+
+                lattice_conf = self.config.get('lattice', {})
+                self.components['lattice'] = ConstraintLatticeAdapter(
+                    lattice_conf.get('symbolic_topology')
+                )
+        else:
+            self._init_components()
         
     def _init_components(self):
         """Initialize all processing components"""

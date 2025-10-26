@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+source "$SCRIPT_DIR/common.sh"
+ensure_venv
+
+if [[ ! -d "$REPO_ROOT/tests/e2e" ]]; then
+  echo "No end-to-end tests defined." >&2
+  exit 0
+fi
+
+run pytest "$REPO_ROOT/tests/e2e"

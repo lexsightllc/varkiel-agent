@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+source "$SCRIPT_DIR/common.sh"
+ensure_venv
+
+run pip-compile --quiet --extra dev --output-file "$REPO_ROOT/requirements.txt" "$REPO_ROOT/pyproject.toml"
+run pip-compile --quiet --generate-hashes --output-file "$REPO_ROOT/requirements.lock" "$REPO_ROOT/pyproject.toml"
