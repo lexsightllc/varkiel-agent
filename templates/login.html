@@ -3,8 +3,15 @@
 <head>
     <title>Varkiel Login</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .login-container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 300px; }
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; display: flex; flex-direction: column; min-height: 100vh; margin: 0; }
+        .nav-wrapper { background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.08); }
+        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 12px 20px; display: flex; align-items: center; gap: 20px; }
+        .nav-brand { font-weight: 600; color: #4e54c8; text-decoration: none; font-size: 18px; }
+        .nav-links { margin-left: auto; display: flex; gap: 16px; }
+        .nav-links a { color: #333; text-decoration: none; font-weight: 500; padding: 6px 10px; border-radius: 6px; }
+        .nav-links a:hover, .nav-links a:focus { background: rgba(78,84,200,0.1); color: #4e54c8; outline: none; }
+        .page-content { flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .login-container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 320px; }
         h2 { text-align: center; color: #333; }
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; }
@@ -14,19 +21,31 @@
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <h2>Varkiel Agent Login</h2>
-        <form method="POST" action="/login">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
+    <nav class="nav-wrapper" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a class="nav-brand" href="/">Varkiel Agent</a>
+            <div class="nav-links" role="menubar">
+                <a role="menuitem" href="/">Home</a>
+                <a role="menuitem" href="/login">Login</a>
+                <a role="menuitem" href="/admin">Admin</a>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">Login</button>
-        </form>
+        </div>
+    </nav>
+    <div class="page-content">
+        <div class="login-container">
+            <h2>Varkiel Agent Login</h2>
+            <form method="POST" action="/login">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>
