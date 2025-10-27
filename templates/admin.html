@@ -3,7 +3,14 @@
 <head>
     <title>Varkiel Admin</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
+        body { font-family: Arial, sans-serif; margin: 0; background: #f5f8fa; }
+        .nav-wrapper { background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.08); }
+        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 12px 20px; display: flex; align-items: center; gap: 20px; }
+        .nav-brand { font-weight: 600; color: #4e54c8; text-decoration: none; font-size: 18px; }
+        .nav-links { margin-left: auto; display: flex; gap: 16px; }
+        .nav-links a { color: #333; text-decoration: none; font-weight: 500; padding: 6px 10px; border-radius: 6px; }
+        .nav-links a:hover, .nav-links a:focus { background: rgba(78,84,200,0.1); color: #4e54c8; outline: none; }
+        .page-content { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
         h1 { color: #333; }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
         th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
@@ -12,28 +19,40 @@
     </style>
 </head>
 <body>
-    <h1>Admin Dashboard</h1>
-    <a href="/export/csv" class="export-btn">Export to CSV</a>
-    
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>User</th>
-                <th>Input</th>
-                <th>Timestamp</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for session in sessions %}
-            <tr>
-                <td>{{ session[0] }}</td>
-                <td>{{ session[1] }}</td>
-                <td>{{ session[2] }}</td>
-                <td>{{ session[4] }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <nav class="nav-wrapper" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a class="nav-brand" href="/">Varkiel Agent</a>
+            <div class="nav-links" role="menubar">
+                <a role="menuitem" href="/">Home</a>
+                <a role="menuitem" href="/login">Login</a>
+                <a role="menuitem" href="/admin">Admin</a>
+            </div>
+        </div>
+    </nav>
+    <div class="page-content">
+        <h1>Admin Dashboard</h1>
+        <a href="/export/csv" class="export-btn">Export to CSV</a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Input</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for session in sessions %}
+                <tr>
+                    <td>{{ session[0] }}</td>
+                    <td>{{ session[1] }}</td>
+                    <td>{{ session[2] }}</td>
+                    <td>{{ session[4] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
